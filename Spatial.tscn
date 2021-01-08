@@ -1,0 +1,37 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
+[ext_resource path="res://assets/grass/Ground037_1K_Normal.jpg" type="Texture" id=3]
+[ext_resource path="res://assets/dirt/Ground042_1K_Color.jpg" type="Texture" id=4]
+[ext_resource path="res://assets/dirt/Ground042_1K_Normal.jpg" type="Texture" id=5]
+[ext_resource path="res://assets/grass/Ground037_1K_Color.jpg" type="Texture" id=6]
+[ext_resource path="res://assets/data.hterrain" type="Resource" id=7]
+[ext_resource path="res://assets/gravel/Gravel019_1K_Color.jpg" type="Texture" id=8]
+[ext_resource path="res://assets/gravel/Gravel019_1K_Normal.jpg" type="Texture" id=9]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+mode = 0
+textures = [ [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 8 ) ], [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 9 ) ] ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 1 )
+_terrain_data = ExtResource( 7 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 1 )
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="HTerrain"]
+transform = Transform( 0.999793, 4.65565e-10, 0.0203491, -0.00728319, 0.933755, 0.357838, -0.0190011, -0.357912, 0.933562, 35.6853, 18.0774, 21.1617 )
